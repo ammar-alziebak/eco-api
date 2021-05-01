@@ -29,6 +29,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
 
     // Request headers you wish to allow
+    res.header('Access-Control-Allow-Headers', 'http://localhost:4200');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
 
     if (req.method === 'OPTIONS') {
