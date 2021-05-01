@@ -1,0 +1,12 @@
+{
+
+    "env": {
+        "MONGO_ATLAS_PW": "123456654321",
+        "JWT_KEY": "secret",
+        "DB_HOST": "bxistga5nu4o0zl63dbi-mysql.services.clever-cloud.com",
+        "DB_USER": "ujph23w8ab1j7kq8",
+        "DB_PASSWORD": "ERBbOUeOPBNZoGDYQITT",
+        "DB_NAME": "bxistga5nu4o0zl63dbi",
+        "DB_CONNECTION_LIMIT": "5"
+    }
+}
