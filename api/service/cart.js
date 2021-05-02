@@ -19,12 +19,12 @@ exports.get_cart_and_cartitem = (data, callBack) => {
                 variation_details.variation2Id,
                 (SELECT variation_options.NAME FROM variation_options WHERE variation_options.id = variation_details.variation2Id) variation2Name
                 FROM cart 
-                JOIN cart_items ON cart.id = cart_items.cartId 
+                INNER JOIN cart_items ON cart.id = cart_items.cartId 
                 LEFT JOIN product ON product.id = cart_items.productId 
                 LEFT JOIN variation_details ON variation_details.id = cart_items.variationDetailsId 
                 LEFT JOIN variation_options variation_options1 ON variation_options1.id = variation_details.variation1Id 
                 LEFT JOIN variation_options variation_options2 ON variation_options2.id = variation_details.variation2Id 
-                AND cart.userId =?;`, [
+                WHERE cart.userId =?;`, [
             data.userId,
             data.userId
         ],
