@@ -26,3 +26,23 @@ exports.get_all_brands = (req, res, next) => {
         }
     });
 }
+exports.brands_get_brand = (req, res, next) => {
+
+    Brands.brands_get_brand(req.params, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).json({
+                success: 0,
+                message: "error when get brand",
+                error: err
+            });
+        }
+        if (result) {
+            res.status(200).json({
+                item: result[0]
+            });
+        } else {
+            res.status(404).json({ message: 'Brand not found' });
+        }
+    })
+}

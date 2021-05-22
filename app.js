@@ -29,7 +29,6 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
 
     // Request headers you wish to allow
-    res.header('Access-Control-Allow-Headers', 'https://tm-eco-93397.web.app');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
 
     if (req.method === 'OPTIONS') {
@@ -54,7 +53,7 @@ app.use('/products', productRoutes);
 //app.use('/orders', orderRoutes);
 app.use('/user', userRoutes);
 app.use('/addresses', addressRoutes);
-app.use('/brand', brandRoutes);
+app.use('/brands', brandRoutes);
 app.use('/categories', categoryRoutes);
 
 

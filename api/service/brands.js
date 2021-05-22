@@ -14,3 +14,18 @@ exports.get_all_brands = (data, callBack) => {
         return callBack(null, result)
     });
 }
+
+exports.brands_get_brand = (data, callBack) => {
+
+    console.log("data.brandId:" + data.brandId);
+    pool.query(`SELECT brand.* FROM brand
+                WHERE brand.id = ?;`, [
+            data.brandId
+        ],
+        (error, result, fields) => {
+            if (error) {
+                return callBack(error);
+            }
+            return callBack(null, result)
+        });
+}
