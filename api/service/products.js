@@ -193,30 +193,45 @@ exports.product_get_categories = (data, callBack) => {
 
 exports.products_get_prodcts_by_keyword = (data, callBack) => {
 
+    var dbCountQuery = `SELECT count(*) totalCount
+                        FROM product
+                        LEFT JOIN made_in ON product.madeInId = made_in.id
+                        LEFT JOIN warranty_period ON product.warrantyPeriodId = warranty_period.id
+                        LEFT JOIN categories ON product.categoryId = categories.id
+                        LEFT JOIN brand ON product.brandId = brand.id
+                        LEFT JOIN currency_symbol ON product.currencySymbolId = currency_symbol.id
+                        WHERE 1=1`;
+
+    if (data.keyword != null) {
+        dbCountQuery += ` AND product.name like '%'  ${pool.escape(data.keyword)} '%' `;
+    }
+
+    if (data.brandId != null) {
+        dbCountQuery += ` AND brand.id in ( ${pool.escape(data.brandId)} )`;
+    }
+
+    var dbQuery = `SELECT product.*,made_in.name madeInName,warranty_period.name warrantyPeriodName,categories.name categoryName,brand.name brandName,currency_symbol.name currencySymbolName
+                    FROM product 
+                    LEFT JOIN made_in ON product.madeInId = made_in.id
+                    LEFT JOIN warranty_period ON product.warrantyPeriodId = warranty_period.id
+                    LEFT JOIN categories ON product.categoryId = categories.id
+                    LEFT JOIN brand ON product.brandId = brand.id
+                    LEFT JOIN currency_symbol ON product.currencySymbolId = currency_symbol.id WHERE 1=1 `;
+
+    if (data.keyword != null) {
+        dbQuery += ` AND product.name like '%'  ${pool.escape(data.keyword)} '%' `;
+    }
+
+    if (data.brandId != null) {
+        dbQuery += ` AND brand.id in ( ${pool.escape(data.brandId)} )`;
+    }
+
+    dbQuery += ` LIMIT  ${parseInt(data.pageSize)} OFFSET ${pool.escape((parseInt(data.pageIndex) * parseInt(data.pageSize)))};`
+
     pool.query({
-        sql: `SELECT count(*) totalCount
-                FROM product 
-                LEFT JOIN made_in ON product.madeInId = made_in.id
-                LEFT JOIN warranty_period ON product.warrantyPeriodId = warranty_period.id
-                LEFT JOIN categories ON product.categoryId = categories.id
-                LEFT JOIN brand ON product.brandId = brand.id
-                LEFT JOIN currency_symbol ON product.currencySymbolId = currency_symbol.id
-                WHERE product.name like '%' ? '%';
-              SELECT product.*,made_in.name madeInName,warranty_period.name warrantyPeriodName,categories.name categoryName,brand.name brandName,currency_symbol.name currencySymbolName
-                FROM product 
-                LEFT JOIN made_in ON product.madeInId = made_in.id
-                LEFT JOIN warranty_period ON product.warrantyPeriodId = warranty_period.id
-                LEFT JOIN categories ON product.categoryId = categories.id
-                LEFT JOIN brand ON product.brandId = brand.id
-                LEFT JOIN currency_symbol ON product.currencySymbolId = currency_symbol.id 
-                WHERE product.name like '%' ? '%'  LIMIT ?, ?;`,
+        sql: `${dbCountQuery};${dbQuery}`,
         timeout: 60000
-    }, [
-        data.keyword,
-        data.keyword,
-        parseInt(data.pageIndex),
-        parseInt(data.pageSize)
-    ], (error, result, fields) => {
+    }, (error, result, fields) => {
 
         if (error && error.code === 'PROTOCOL_SEQUENCE_TIMEOUT') {
             throw new Error('too long to count table rows!');
