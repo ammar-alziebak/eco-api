@@ -4,9 +4,6 @@ const { version } = require('mongoose');
 
 exports.products_get_all = (data, callBack) => {
 
-    //console.log("11111111111");
-    // console.log(data.pageIndex);
-    // console.log(data.pageSize);
     pool.query({
         sql: `SELECT count(*) totalCount
                 FROM product 
