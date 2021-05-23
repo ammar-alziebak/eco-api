@@ -207,7 +207,15 @@ exports.products_get_prodcts_by_keyword = (data, callBack) => {
     }
 
     if (data.brandId != null) {
-        dbCountQuery += ` AND brand.id in ( ${pool.escape(data.brandId)} )`;
+        dbCountQuery += ` AND brand.id in ( ${data.brandId} )`;
+    }
+
+    if (data.categoryId != null) {
+        dbCountQuery += ` AND categories.id in ( ${data.categoryId} )`;
+    }
+
+    if (data.conditionId != null) {
+        dbCountQuery += ` AND product.conditionValue in ( ${data.conditionId} )`;
     }
 
     var dbQuery = `SELECT product.*,made_in.name madeInName,warranty_period.name warrantyPeriodName,categories.name categoryName,brand.name brandName,currency_symbol.name currencySymbolName
@@ -223,7 +231,15 @@ exports.products_get_prodcts_by_keyword = (data, callBack) => {
     }
 
     if (data.brandId != null) {
-        dbQuery += ` AND brand.id in ( ${pool.escape(data.brandId)} )`;
+        dbQuery += ` AND brand.id in ( ${data.brandId} )`;
+    }
+
+    if (data.categoryId != null) {
+        dbQuery += ` AND categories.id in ( ${data.categoryId} )`;
+    }
+
+    if (data.conditionId != null) {
+        dbQuery += ` AND product.conditionValue in ( ${data.conditionId} )`;
     }
 
     dbQuery += ` LIMIT  ${parseInt(data.pageSize)} OFFSET ${pool.escape((parseInt(data.pageIndex) * parseInt(data.pageSize)))};`
