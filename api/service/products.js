@@ -4,6 +4,9 @@ const { version } = require('mongoose');
 
 exports.products_get_all = (data, callBack) => {
 
+    //console.log("11111111111");
+    // console.log(data.pageIndex);
+    // console.log(data.pageSize);
     pool.query({
         sql: `SELECT count(*) totalCount
                 FROM product 
@@ -190,6 +193,28 @@ exports.product_get_categories = (data, callBack) => {
 
 exports.products_get_prodcts_by_keyword = (data, callBack) => {
 
+    var queryFilter = '';
+    if (data.keyword != null) {
+        queryFilter += ` AND product.name like '%'  ${pool.escape(data.keyword)} '%' `;
+    }
+
+    if (data.brandId != null) {
+        queryFilter += ` AND brand.id in ( ${data.brandId} )`;
+    }
+
+    if (data.categoryId != null) {
+        queryFilter += ` AND categories.id in ( 
+            SELECT id FROM categories WHERE id in ( ${data.categoryId} )
+            UNION 
+            SELECT id FROM categories WHERE parentId in ( ${data.categoryId} )
+            UNION 
+            SELECT id FROM categories WHERE parentId IN (SELECT id FROM categories WHERE parentId in ( ${data.categoryId} )))`;
+    }
+
+    if (data.conditionId != null) {
+        queryFilter += ` AND product.conditionValue in ( ${data.conditionId} )`;
+    }
+
     var dbCountQuery = `SELECT count(*) totalCount
                         FROM product
                         LEFT JOIN made_in ON product.madeInId = made_in.id
@@ -199,21 +224,7 @@ exports.products_get_prodcts_by_keyword = (data, callBack) => {
                         LEFT JOIN currency_symbol ON product.currencySymbolId = currency_symbol.id
                         WHERE 1=1`;
 
-    if (data.keyword != null) {
-        dbCountQuery += ` AND product.name like '%'  ${pool.escape(data.keyword)} '%' `;
-    }
-
-    if (data.brandId != null) {
-        dbCountQuery += ` AND brand.id in ( ${data.brandId} )`;
-    }
-
-    if (data.categoryId != null) {
-        dbCountQuery += ` AND categories.id in ( ${data.categoryId} )`;
-    }
-
-    if (data.conditionId != null) {
-        dbCountQuery += ` AND product.conditionValue in ( ${data.conditionId} )`;
-    }
+    dbCountQuery += queryFilter;
 
     var dbQuery = `SELECT product.*,made_in.name madeInName,warranty_period.name warrantyPeriodName,categories.name categoryName,brand.name brandName,currency_symbol.name currencySymbolName
                     FROM product 
@@ -223,21 +234,7 @@ exports.products_get_prodcts_by_keyword = (data, callBack) => {
                     LEFT JOIN brand ON product.brandId = brand.id
                     LEFT JOIN currency_symbol ON product.currencySymbolId = currency_symbol.id WHERE 1=1 `;
 
-    if (data.keyword != null) {
-        dbQuery += ` AND product.name like '%'  ${pool.escape(data.keyword)} '%' `;
-    }
-
-    if (data.brandId != null) {
-        dbQuery += ` AND brand.id in ( ${data.brandId} )`;
-    }
-
-    if (data.categoryId != null) {
-        dbQuery += ` AND categories.id in ( ${data.categoryId} )`;
-    }
-
-    if (data.conditionId != null) {
-        dbQuery += ` AND product.conditionValue in ( ${data.conditionId} )`;
-    }
+    dbQuery += queryFilter;
 
     dbQuery += ` LIMIT  ${parseInt(data.pageSize)} OFFSET ${pool.escape((parseInt(data.pageIndex) * parseInt(data.pageSize)))};`
 
