@@ -215,6 +215,10 @@ exports.products_get_prodcts_by_keyword = (data, callBack) => {
         queryFilter += ` AND product.conditionValue in ( ${data.conditionId} )`;
     }
 
+    if (data.priceRange != null) {
+        queryFilter += ` AND product.price between ${data.priceRange.split(",")[0]} and ${data.priceRange.split(",")[1]}`;
+    }
+
     var dbCountQuery = `SELECT count(*) totalCount
                         FROM product
                         LEFT JOIN made_in ON product.madeInId = made_in.id
