@@ -219,6 +219,51 @@ exports.products_get_prodcts_by_keyword = (data, callBack) => {
         queryFilter += ` AND product.price between ${data.priceRange.split(",")[0]} and ${data.priceRange.split(",")[1]}`;
     }
 
+    if (data.discounts != null) {
+        switch (data.discounts) {
+            case '1To19':
+                queryFilter += ` AND product.discount BETWEEN 1 AND 19 `;
+                break;
+            case '20To29':
+                queryFilter += ` AND product.discount BETWEEN 20 AND 29 `;
+                break;
+            case '30To39':
+                queryFilter += ` AND product.discount BETWEEN 30 AND 39 `;
+                break;
+            case '40To49':
+                queryFilter += ` AND product.discount BETWEEN 40 AND 49 `;
+                break;
+            case '50To':
+                queryFilter += ` AND product.discount BETWEEN 50 AND 100 `;
+                break;
+            default:
+                break;
+        }
+    }
+
+    if (data.sort != null) {
+        switch (data.sort) {
+            case 'pricedesc':
+                queryFilter += ` ORDER BY product.price DESC `;
+                break;
+            case 'priceasc':
+                queryFilter += ` ORDER BY product.price ASC `;
+                break;
+            case 'createdtdesc':
+                break;
+            case 'createdtasc':
+                break;
+            case 'productasc':
+                queryFilter += ` ORDER BY product.name ASC `;
+                break;
+            case 'productdesc':
+                queryFilter += ` ORDER BY product.name DESC `;
+                break;
+            default:
+                break;
+        }
+    }
+
     var dbCountQuery = `SELECT count(*) totalCount
                         FROM product
                         LEFT JOIN made_in ON product.madeInId = made_in.id
