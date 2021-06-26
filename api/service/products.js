@@ -264,6 +264,7 @@ exports.products_get_prodcts_by_keyword = (data, callBack) => {
         }
     }
 
+
     var dbCountQuery = `SELECT count(*) totalCount
                         FROM product
                         LEFT JOIN made_in ON product.madeInId = made_in.id
