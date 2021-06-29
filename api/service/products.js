@@ -218,7 +218,7 @@ exports.products_get_prodcts_by_keyword = (data, callBack) => {
     if (data.priceRange != null) {
         queryFilter += ` AND product.price between ${data.priceRange.split(",")[0]} and ${data.priceRange.split(",")[1]}`;
     }
- 
+
     if (data.discounts != null) {
         switch (data.discounts) {
             case '1To19':
@@ -240,7 +240,7 @@ exports.products_get_prodcts_by_keyword = (data, callBack) => {
                 break;
         }
     }
- 
+
     if (data.sort != null) {
         switch (data.sort) {
             case 'pricedesc':

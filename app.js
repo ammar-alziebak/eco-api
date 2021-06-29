@@ -11,6 +11,7 @@ const addressRoutes = require('./api/routes/address');
 const cartRoutes = require('./api/routes/cart');
 const brandRoutes = require('./api/routes/brands');
 const categoryRoutes = require('./api/routes/categories');
+const wishlistRoutes = require('./api/routes/wishlist');
 // mongoose.connect('mongodb+srv://ammar:' + process.env.MONGO_ATLAS_PW + '@cluster0.nvxrt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
 //     useNewUrlParser: true,
 //     useUnifiedTopology: true
@@ -55,6 +56,7 @@ app.use('/user', userRoutes);
 app.use('/addresses', addressRoutes);
 app.use('/brands', brandRoutes);
 app.use('/categories', categoryRoutes);
+app.use('/wishlist', wishlistRoutes);
 
 
 // app.use((req, res, next) => {
