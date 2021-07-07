@@ -241,6 +241,10 @@ exports.products_get_prodcts_by_keyword = (data, callBack) => {
         }
     }
 
+    if (data.userId != null) {
+        queryFilter += ` AND product.id IN (SELECT productId FROM wishlist WHERE userId = '${data.userId}') `;
+    }
+
     if (data.sort != null) {
         switch (data.sort) {
             case 'pricedesc':
