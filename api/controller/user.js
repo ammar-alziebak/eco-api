@@ -127,6 +127,59 @@ exports.users_delete_user = (req, res, next) => {
     });
 }
 
+exports.user_change_password = (req, res) => {
+
+    User.user_login(req.body.user, (err, user) => {
+        if (err) {
+            console.log(err);
+            res.status(500).json({
+                success: 0,
+                message: "error when get user info",
+                error: err
+            });
+        }
+        if (user.length < 1) {
+            console.log("user:" + user);
+            res.status(401)
+                .json({
+                    success: 0,
+                    message: 'Auth failed'
+                });
+        } else {
+            bcrypt.compare(req.body.currentPassword, user[0].password, (err, result) => {
+                if (err) {
+                    console.log(err);
+                    res.status(401)
+                        .json({ message: 'Auth failed' });
+                }
+                if (result) {
+
+                    const body = req.body;
+                    const salt = bcrypt.genSaltSync(10);
+                    body.newPassword = bcrypt.hashSync(body.newPassword, salt);
+                    User.user_change_password(body, (err, result) => {
+                        if (err) {
+                            console.log(err);
+                            res.status(500).json({
+                                success: 0,
+                                message: "error when update user password",
+                                error: err
+                            });
+                        }
+                        res.status(201).json({
+                            success: 1,
+                            message: 'Update user password successfully',
+                            data: result
+                        });
+                    });
+                } else {
+                    res.status(401).json({ success: 0, message: 'Auth failed' });
+                }
+            });
+        }
+    });
+}
+
 // exports.user_signup = (req, res, next) => {
 
 //     User

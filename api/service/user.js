@@ -68,3 +68,20 @@ exports.user_delete = (data, callBack) => {
             return callBack(null, result)
         });
 }
+
+
+exports.user_change_password = (data, callBack) => {
+
+    pool.query(`update user 
+                set password = ?
+                where email = ? `, [
+            data.newPassword,
+            data.user.email,
+        ],
+        (error, result, fields) => {
+            if (error) {
+                return callBack(error);
+            }
+            return callBack(null, result)
+        });
+}

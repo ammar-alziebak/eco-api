@@ -34,3 +34,20 @@ exports.validate = () => {
         }
     });
 }
+
+exports.change_password_validate = () => {
+
+    return checkSchema({
+        'user.email': {
+            isEmail: {
+                errorMessage: 'invalid email',
+            }
+        },
+        newPassword: {
+            isLength: {
+                errorMessage: 'Password should be at least 8 chars long',
+                options: { min: 8 },
+            },
+        },
+    });
+}
