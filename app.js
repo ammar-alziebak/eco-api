@@ -52,7 +52,7 @@ app.use((req, res, next) => {
 
 app.use('/cart', cartRoutes);
 app.use('/products', productRoutes);
-//app.use('/orders', orderRoutes);
+app.use('/orders', orderRoutes);
 app.use('/user', userRoutes);
 app.use('/addresses', addressRoutes);
 app.use('/brands', brandRoutes);
@@ -62,7 +62,7 @@ app.use('/payments', paymentRoutes);
 
 // app.use((req, res, next) => {
 //     res.status(200).json({
-//         message: "it's work!"
+//         message: "it's worsk!"
 //     });
 // });
 
