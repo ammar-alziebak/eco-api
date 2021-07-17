@@ -50,6 +50,7 @@ exports.orders_insert_order = (data, callBack) => {
                     console.log('Transaction Completed Successfully.');
                     // pool.end();
                 });
+                return callBack(null, result)
             });
         });
     });
