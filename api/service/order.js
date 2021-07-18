@@ -71,6 +71,19 @@ exports.orders_get_order_by_user_id = (data, callBack) => {
         });
 }
 
+exports.orders_get_order_by_order_id = (data, callBack) => {
+
+    pool.query(`SELECT * FROM orders WHERE id =?;`, [
+            data.orderId
+        ],
+        (error, result, fields) => {
+            if (error) {
+                return callBack(error);
+            }
+            return callBack(null, result)
+        });
+}
+
 exports.orders_get_order_details_by_order_id = (data, callBack) => {
 
     pool.query(`SELECT	order_details.*,

@@ -45,6 +45,32 @@ exports.orders_get_order_by_user_id = (req, res, next) => {
     });
 }
 
+exports.orders_get_order_by_order_id = (req, res, next) => {
+
+    Order.orders_get_order_by_order_id(req.params, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).json({
+                success: 0,
+                message: "error when get order",
+                error: err
+            });
+        }
+
+        if (result.length >= 1) {
+            res.status(200).json({
+                success: 1,
+                message: 'Get order information Successfully',
+                items: result
+            });
+        } else {
+            res.status(404).json({
+                message: 'No entries found'
+            });
+        }
+    });
+}
+
 exports.orders_get_order_details_by_order_id = (req, res, next) => {
 
     Order.orders_get_order_details_by_order_id(req.params, (err, result) => {

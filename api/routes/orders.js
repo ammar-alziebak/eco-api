@@ -6,6 +6,8 @@ router.post('/', OrdersController.orders_insert_order)
 
 router.get('/:userId', OrdersController.orders_get_order_by_user_id)
 
+router.get('/:orderId/order', OrdersController.orders_get_order_by_order_id)
+
 router.get('/:orderId/details', OrdersController.orders_get_order_details_by_order_id)
 
 module.exports = router;
