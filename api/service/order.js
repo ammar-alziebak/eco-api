@@ -73,7 +73,17 @@ exports.orders_get_order_by_user_id = (data, callBack) => {
 
 exports.orders_get_order_details_by_order_id = (data, callBack) => {
 
-    pool.query(`SELECT * FROM order_details WHERE orderId =?;`, [
+    pool.query(`SELECT	order_details.*,
+                        product.name productName,
+                        product.productImage,
+                        variation_details.variation1Id,
+                        (SELECT variation_options.NAME FROM variation_options WHERE variation_options.id = variation_details.variation1Id) variation1Name,
+                        variation_details.variation2Id,
+                        (SELECT variation_options.NAME FROM variation_options WHERE variation_options.id = variation_details.variation2Id) variation2Name			
+                FROM order_details 
+                LEFT JOIN product ON product.id = order_details.productId 
+                LEFT JOIN variation_details ON variation_details.id = order_details.variationDetailsId
+                WHERE order_details.orderId =?;`, [
             data.orderId
         ],
         (error, result, fields) => {
