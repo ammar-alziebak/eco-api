@@ -12,11 +12,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- Dumping database structure for test
-CREATE DATABASE IF NOT EXISTS `test` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `test`;
-
 -- Dumping structure for table test.address
 CREATE TABLE IF NOT EXISTS `address` (
   `id` varchar(100) NOT NULL,
@@ -31,10 +26,11 @@ CREATE TABLE IF NOT EXISTS `address` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table test.address: ~6 rows (approximately)
+-- Dumping data for table test.address: ~7 rows (approximately)
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
 INSERT INTO `address` (`id`, `fullName`, `phoneNumber`, `postalCode`, `stateId`, `areaId`, `description`, `userId`, `isDefault`) VALUES
-	('67c831f0-a9da-11eb-8e92-234123d52c8a', 't', 't', 't', '2dde3156-9efe-11eb-a8b3-0242ac130003', '93303b2a-9eff-11eb-a8b3-0242ac130003', 'tandhashdk asdhaskdh askhdkjashdkjas akjshdkjashdk ajshdkjahsdka ajshdkjahsdkj aksjdhkjashd ajshdkjahs djhaskjdh asdkjhaskdj asjdhkjashdkjashdasndjjnaklsd', '4b27aa50-996a-11eb-bd9d-00ff5ce25614', 1),
+	('13bacda0-e2cb-11eb-9092-152d9d1b9c94', 'Taim', '01131167534', '45000', '2dde33b8-9efe-11eb-a8b3-0242ac130003', '9330412e-9eff-11eb-a8b3-0242ac130003', 'A, street2, a-38-3', '4b27aa50-996a-11eb-bd9d-00ff5ce25614', 0),
+	('67c831f0-a9da-11eb-8e92-234123d52c8a', 'Ammaro', '01121184536', '53000', '2dde3156-9efe-11eb-a8b3-0242ac130003', '93303b2a-9eff-11eb-a8b3-0242ac130003', 'a-63-6, 3resident, milawati', '4b27aa50-996a-11eb-bd9d-00ff5ce25614', 1),
 	('864fef10-9f8e-11eb-9eb4-bd380cba5913', 'Ammar Alziebak', '01121175143', '52100', '2dde33b8-9efe-11eb-a8b3-0242ac130003', '93303ec2-9eff-11eb-a8b3-0242ac130003', 'm-city , jalan 202, A-35-1', '4b27aa50-996a-11eb-bd9d-00ff5ce25614', 0),
 	('a16056f0-9f8e-11eb-9eb4-bd380cba5913', 'Taim Alziebak', '011211452618', '54000', '2dde34bc-9efe-11eb-a8b3-0242ac130003', '93304692-9eff-11eb-a8b3-0242ac130003', 'city garden plam villa', '4b27aa50-996a-11eb-bd9d-00ff5ce25614', 0),
 	('d880e530-aebd-11eb-85d1-7f40692cb33d', 'q', 'q', 'q', '2dde3156-9efe-11eb-a8b3-0242ac130003', '93303904-9eff-11eb-a8b3-0242ac130003', 'q', '22fc8990-9e05-11eb-bd9d-00ff5ce25614', 0),
@@ -72,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `brand` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table test.brand: ~11 rows (approximately)
+-- Dumping data for table test.brand: ~13 rows (approximately)
 /*!40000 ALTER TABLE `brand` DISABLE KEYS */;
 INSERT INTO `brand` (`id`, `name`, `logo`, `image`, `description`) VALUES
 	('1', 'DEWALT', 'https://www.hardwarepasal.com/src/img/brand/2020-05-08-10-27-51_XBnPBuSCiE_brand.png', 'https://cdn.protoolreviews.com/wp-content/uploads/2019/04/DeWalt-20V-Max-Atomic-Compact-Tools-1-e1553618035458.jpg', 'Founded in 1999, the Asiaeuro Group is a distributor of pure wines with its corporate headquarters in Kuala Lumpur.'),
@@ -117,12 +113,18 @@ CREATE TABLE IF NOT EXISTS `cart_items` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table test.cart_items: ~1 rows (approximately)
+-- Dumping data for table test.cart_items: ~9 rows (approximately)
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
 INSERT INTO `cart_items` (`id`, `cartId`, `productId`, `variationDetailsId`, `quantity`) VALUES
 	('2ba2ec60-abb5-11eb-9175-d3e251c06bc9', 'b9a18a90-a141-11eb-80e5-996593381b38', '19aec240-9438-11eb-a210-00ff5ce25614', 'g6884c66-9478-11eb-a8b3-0242ac130003', 1),
-	('336d36d0-b8bc-11eb-953e-63b960efc0dd', '6fdb65c4-9fad-11eb-a8b3-0242ac130003', '19aec240-9438-11eb-a210-00ff5ce25614', 'h6884c66-9478-11eb-a8b3-0242ac130003', 1),
-	('502afa50-afd9-11eb-8292-d917195e7c64', '6fdb65c4-9fad-11eb-a8b3-0242ac130003', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a28852ec-9478-11eb-a8b3-0242ac130003', 1);
+	('2e98f500-e778-11eb-8a2e-3514d3979e78', '6fdb65c4-9fad-11eb-a8b3-0242ac130003', '3d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 2),
+	('814d3880-df88-11eb-a07b-b5076eedf790', '6fdb65c4-9fad-11eb-a8b3-0242ac130003', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a28852ec-9478-11eb-a8b3-0242ac130003', 2),
+	('9838aed0-df88-11eb-a07b-b5076eedf790', '6fdb65c4-9fad-11eb-a8b3-0242ac130003', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2885166-9478-11eb-a8b3-0242ac130003', 2),
+	('9b46d930-df88-11eb-a07b-b5076eedf790', '6fdb65c4-9fad-11eb-a8b3-0242ac130003', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2884c66-9478-11eb-a8b3-0242ac130003', 2),
+	('c3b4dfe0-e328-11eb-9092-152d9d1b9c94', '6fdb65c4-9fad-11eb-a8b3-0242ac130003', '39aec240-9438-11eb-a210-00ff5ce25614', NULL, 5),
+	('cc4744a0-e881-11eb-baa4-795965ab3ba6', '6fdb65c4-9fad-11eb-a8b3-0242ac130003', '49aec240-9438-11eb-a210-00ff5ce25614', NULL, 3),
+	('dba64550-e619-11eb-8639-f52e09691b81', '6fdb65c4-9fad-11eb-a8b3-0242ac130003', '8d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 5),
+	('f6667980-e328-11eb-9092-152d9d1b9c94', '6fdb65c4-9fad-11eb-a8b3-0242ac130003', '19aec240-9438-11eb-a210-00ff5ce25614', 'h6884c66-9478-11eb-a8b3-0242ac130003', 1);
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 
 -- Dumping structure for table test.categories
@@ -383,11 +385,151 @@ CREATE TABLE IF NOT EXISTS `made_in` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table test.made_in: ~0 rows (approximately)
+-- Dumping data for table test.made_in: ~1 rows (approximately)
 /*!40000 ALTER TABLE `made_in` DISABLE KEYS */;
 INSERT INTO `made_in` (`id`, `name`) VALUES
 	('f849d132-9483-11eb-a8b3-0242ac130003', 'china');
 /*!40000 ALTER TABLE `made_in` ENABLE KEYS */;
+
+-- Dumping structure for table test.orders
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` varchar(100) NOT NULL,
+  `status` int(11) NOT NULL,
+  `subtotal` decimal(20,6) NOT NULL DEFAULT 0.000000,
+  `shippingFee` decimal(20,6) NOT NULL DEFAULT 0.000000,
+  `total` decimal(20,6) NOT NULL DEFAULT 0.000000,
+  `paymentMethod` int(11) NOT NULL,
+  `orderDate` datetime NOT NULL,
+  `paymentDate` date DEFAULT NULL,
+  `shipDate` date DEFAULT NULL,
+  `completedDate` date DEFAULT NULL,
+  `shippingInformation` varchar(500) DEFAULT NULL,
+  `deliveryAddress` varchar(500) NOT NULL,
+  `customerId` varchar(100) NOT NULL,
+  `customerMessage` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table test.orders: ~4 rows (approximately)
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` (`id`, `status`, `subtotal`, `shippingFee`, `total`, `paymentMethod`, `orderDate`, `paymentDate`, `shipDate`, `completedDate`, `shippingInformation`, `deliveryAddress`, `customerId`, `customerMessage`) VALUES
+	('2021071811Ib2', 1, 130152.800000, 3000.000000, 133152.800000, 1, '2021-07-18 11:04:03', NULL, NULL, NULL, NULL, 'Ammaro| (01121184536) |a-63-6, 3resident, milawati , Ayer Hitam , 53000 , Johor', '4b27aa50-996a-11eb-bd9d-00ff5ce25614', NULL),
+	('202107182Ap8', 1, 38800.000000, 3000.000000, 41800.000000, 1, '2021-07-18 02:01:52', NULL, NULL, NULL, 'Shipping by DHL', 'Ammar Alziebak| (01121175143) |m-city , jalan 202, A-35-1 , Bukit Jalil , 52100 , Kuala Lumpur', '4b27aa50-996a-11eb-bd9d-00ff5ce25614', NULL),
+	('2021071910VGx', 1, 145152.800000, 3000.000000, 148152.800000, 2, '2021-07-19 10:29:57', NULL, NULL, NULL, NULL, 'Ammar Alziebak| (01121175143) |m-city , jalan 202, A-35-1 , Bukit Jalil , 52100 , Kuala Lumpur', '4b27aa50-996a-11eb-bd9d-00ff5ce25614', NULL),
+	('2021071910ZL0', 1, 145152.800000, 3000.000000, 148152.800000, 1, '2021-07-19 10:43:59', NULL, NULL, NULL, NULL, 'Ammaro| (01121184536) |a-63-6, 3resident, milawati , Ayer Hitam , 53000 , Johor', '4b27aa50-996a-11eb-bd9d-00ff5ce25614', 'test');
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+
+-- Dumping structure for table test.order_details
+CREATE TABLE IF NOT EXISTS `order_details` (
+  `id` varchar(100) NOT NULL,
+  `orderId` varchar(100) NOT NULL,
+  `productId` varchar(100) NOT NULL,
+  `variationDetailsId` varchar(100) DEFAULT NULL,
+  `originalPrice` decimal(20,6) NOT NULL DEFAULT 0.000000,
+  `salePrice` decimal(20,6) NOT NULL DEFAULT 0.000000,
+  `qty` int(11) NOT NULL,
+  `status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table test.order_details: ~56 rows (approximately)
+/*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
+INSERT INTO `order_details` (`id`, `orderId`, `productId`, `variationDetailsId`, `originalPrice`, `salePrice`, `qty`, `status`) VALUES
+	('202107181103593J4', '2021071811EA2', '39aec240-9438-11eb-a210-00ff5ce25614', NULL, 5000.000000, 5000.000000, 5, 1),
+	('202107181103595Ym', '2021071811EA2', '3d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 19400.000000, 2, 1),
+	('20210718110359bxl', '2021071811EA2', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a28852ec-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210718110359DhB', '2021071811EA2', '8d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 12000.000000, 5, 1),
+	('20210718110359DoZ', '2021071811EA2', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2884c66-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210718110359Tx7', '2021071811EA2', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2885166-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210718110359ygV', '2021071811EA2', '19aec240-9438-11eb-a210-00ff5ce25614', 'h6884c66-9478-11eb-a8b3-0242ac130003', 5000.000000, 4500.000000, 1, 1),
+	('202107181104030oN', '2021071811Ib2', '39aec240-9438-11eb-a210-00ff5ce25614', NULL, 5000.000000, 5000.000000, 5, 1),
+	('202107181104035pv', '2021071811Ib2', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2885166-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('202107181104036QU', '2021071811Ib2', '19aec240-9438-11eb-a210-00ff5ce25614', 'h6884c66-9478-11eb-a8b3-0242ac130003', 5000.000000, 4500.000000, 1, 1),
+	('202107181104037AR', '2021071811Ib2', '8d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 12000.000000, 5, 1),
+	('20210718110403K5d', '2021071811Ib2', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2884c66-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210718110403nfj', '2021071811Ib2', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a28852ec-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210718110403uvA', '2021071811Ib2', '3d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 19400.000000, 2, 1),
+	('2021071820142JGT', '202107182u2V', '3d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 19400.000000, 2, 1),
+	('2021071820152LH6', '202107182Ap8', '3d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 19400.000000, 2, 1),
+	('202107191029462hB', '202107191089K', '19aec240-9438-11eb-a210-00ff5ce25614', 'h6884c66-9478-11eb-a8b3-0242ac130003', 5000.000000, 4500.000000, 1, 1),
+	('202107191029466Pn', '202107191089K', '8d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 12000.000000, 5, 1),
+	('202107191029468Yr', '202107191089K', '3d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 19400.000000, 2, 1),
+	('20210719102946gg4', '202107191089K', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2884c66-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210719102946Njy', '202107191089K', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2885166-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210719102946RFN', '202107191089K', '49aec240-9438-11eb-a210-00ff5ce25614', NULL, 5000.000000, 5000.000000, 3, 1),
+	('20210719102946XGN', '202107191089K', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a28852ec-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210719102946yzN', '202107191089K', '39aec240-9438-11eb-a210-00ff5ce25614', NULL, 5000.000000, 5000.000000, 5, 1),
+	('202107191029520yC', '2021071910AQl', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a28852ec-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('2021071910295251e', '2021071910AQl', '49aec240-9438-11eb-a210-00ff5ce25614', NULL, 5000.000000, 5000.000000, 3, 1),
+	('202107191029529gV', '2021071910AQl', '3d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 19400.000000, 2, 1),
+	('20210719102952dQq', '2021071910AQl', '19aec240-9438-11eb-a210-00ff5ce25614', 'h6884c66-9478-11eb-a8b3-0242ac130003', 5000.000000, 4500.000000, 1, 1),
+	('20210719102952KQt', '2021071910AQl', '39aec240-9438-11eb-a210-00ff5ce25614', NULL, 5000.000000, 5000.000000, 5, 1),
+	('20210719102952m0E', '2021071910AQl', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2885166-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210719102952sFY', '2021071910AQl', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2884c66-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210719102952VzM', '2021071910AQl', '8d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 12000.000000, 5, 1),
+	('20210719102957M8J', '2021071910VGx', '19aec240-9438-11eb-a210-00ff5ce25614', 'h6884c66-9478-11eb-a8b3-0242ac130003', 5000.000000, 4500.000000, 1, 1),
+	('20210719102957q3r', '2021071910VGx', '39aec240-9438-11eb-a210-00ff5ce25614', NULL, 5000.000000, 5000.000000, 5, 1),
+	('20210719102957Qo7', '2021071910VGx', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2884c66-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210719102957RMx', '2021071910VGx', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2885166-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210719102957Tyr', '2021071910VGx', '49aec240-9438-11eb-a210-00ff5ce25614', NULL, 5000.000000, 5000.000000, 3, 1),
+	('20210719102957vkV', '2021071910VGx', '8d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 12000.000000, 5, 1),
+	('20210719102957vLh', '2021071910VGx', '3d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 19400.000000, 2, 1),
+	('20210719102957wHf', '2021071910VGx', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a28852ec-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210719104255apF', '2021071910jhk', '49aec240-9438-11eb-a210-00ff5ce25614', NULL, 5000.000000, 5000.000000, 3, 1),
+	('20210719104255Apk', '2021071910jhk', '8d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 12000.000000, 5, 1),
+	('20210719104255c9G', '2021071910jhk', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a28852ec-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210719104255DFU', '2021071910jhk', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2885166-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210719104255rxp', '2021071910jhk', '3d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 19400.000000, 2, 1),
+	('20210719104255SgL', '2021071910jhk', '39aec240-9438-11eb-a210-00ff5ce25614', NULL, 5000.000000, 5000.000000, 5, 1),
+	('20210719104255TXT', '2021071910jhk', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2884c66-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210719104255ug6', '2021071910jhk', '19aec240-9438-11eb-a210-00ff5ce25614', 'h6884c66-9478-11eb-a8b3-0242ac130003', 5000.000000, 4500.000000, 1, 1),
+	('202107191043591gL', '2021071910ZL0', '39aec240-9438-11eb-a210-00ff5ce25614', NULL, 5000.000000, 5000.000000, 5, 1),
+	('202107191043598Xv', '2021071910ZL0', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2884c66-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210719104359fZR', '2021071910ZL0', '49aec240-9438-11eb-a210-00ff5ce25614', NULL, 5000.000000, 5000.000000, 3, 1),
+	('20210719104359gk4', '2021071910ZL0', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a28852ec-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210719104359kIm', '2021071910ZL0', '8d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 12000.000000, 5, 1),
+	('20210719104359kPA', '2021071910ZL0', '3d6c2cc2-9435-11eb-a210-00ff5ce25614', NULL, 20000.000000, 19400.000000, 2, 1),
+	('20210719104359lqc', '2021071910ZL0', '1d6c2cc2-9435-11eb-a210-00ff5ce25614', 'a2885166-9478-11eb-a8b3-0242ac130003', 20000.000000, 17600.000000, 2, 1),
+	('20210719104359y6U', '2021071910ZL0', '19aec240-9438-11eb-a210-00ff5ce25614', 'h6884c66-9478-11eb-a8b3-0242ac130003', 5000.000000, 4500.000000, 1, 1);
+/*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
+
+-- Dumping structure for table test.page
+CREATE TABLE IF NOT EXISTS `page` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `pageCode` varchar(50) NOT NULL,
+  `contentData` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table test.page: ~10 rows (approximately)
+/*!40000 ALTER TABLE `page` DISABLE KEYS */;
+INSERT INTO `page` (`id`, `name`, `pageCode`, `contentData`) VALUES
+	(1, 'About Us', 'About-Us', '  <div class="container">\r\n  <div class="text-center">\r\n  </div>\r\n  <div class="ckeditor-content clearfix"><div class="col-md-12" style="margin-bottom: 40px;">\r\n  <p style="font-family: Muli-Bold; font-size: 25px; line-height: 1.2;">MR.DIY first opened one store on Jalan Tuanku Abdul Rahman in July 2005 and has now grown to become the largest home improvement retailer in the region with stores across Malaysia.</p>\r\n  </div>\r\n  <div class="row">\r\n  <div class="col-md-4" style="margin: 40px 0px 40px;">\r\n  <div class="column-title" style="font-family: Muli-ExtraBold; text-transform: uppercase; font-size: 40px; padding-top: 15px; text-align: center;">700+</div>\r\n  <hr style="width: 30px; height: 2px; background: #ffc425; display: block;">\r\n  <p style="font-family: Muli-Light; font-size: 16px; color: #8f8f8f; margin: 0px; text-align: center;">Stores throughout Malaysia</p>\r\n  </div>\r\n  <div class="col-md-4" style="margin: 40px 0px 40px;">\r\n  <div class="column-title" style="font-family: Muli-ExtraBold; text-transform: uppercase; font-size: 40px; padding-top: 15px; text-align: center;">10,000</div>\r\n  <hr style="width: 30px; height: 2px; background: #ffc425; display: block;">\r\n  <p style="font-family: Muli-Light; font-size: 16px; color: #8f8f8f; margin: 0px; text-align: center;">Average square feet per store</p>\r\n  </div>\r\n  <div class="col-md-4" style="margin: 40px 0px 40px;">\r\n  <div class="column-title" style="font-family: Muli-ExtraBold; text-transform: uppercase; font-size: 40px; padding-top: 15px; text-align: center;">80 million</div>\r\n  <hr style="width: 30px; height: 2px; background: #ffc425; display: block;">\r\n  <p style="font-family: Muli-Light; font-size: 16px; color: #8f8f8f; margin: 0px; text-align: center;">Customers served yearly</p>\r\n  </div>\r\n  </div>\r\n  <div class="col-md-12" style="margin: 40px 0px 40px;">\r\n  <p style="font-family: Muli; font-size: 17px; color: #000000; text-align: justify;">Most MR.DIY stores encompass about average 10,000 square feet per store, providing a comfortable and wholesome family shopping experience. MR.DIY serves more than 80 million customers yearly at all stores in Malaysia and Brunei, as well as our <a href="https://www.mrdiy.com.my/" target="_blank" style="color: #ed1c24;" rel="noopener noreferrer">online store</a><span>.</span><br><br>All MR.DIY stores are managed directly and in collaboration with large retailers and mall owners, operating as a mini anchor tenant in Tesco, Giant, AEON and AEON BIG. <br><br>With ten categories — Hardware, Household, Electrical, Furnishing, Car Accessories, Stationery &amp; Sports, Toys, Gifts, Computer &amp; Mobile Accessories and Jewellery &amp; Cosmetics — in each store, MR.DIY offers a wide selection of more than 16,600 types of products at \'Always Low Prices\'.</p>\r\n  </div>\r\n  <div class="row" style="margin: 80px 0px 80px; background-color: #f6f6f6; padding: 30px;">\r\n  <div class="col-md-4">  \r\n  <div class="column-title" style="font-family: Muli-ExtraBold; text-transform: uppercase; font-size: 20px; padding-top: 15px; text-align: center;">Always</div>\r\n  <hr style="width: 30px; height: 2px; background: #ffc425; display: block; /* margin: 1rem 0;">\r\n  <p style="font-size: 14px; text-align: center;">Low Prices</p>\r\n  </div>\r\n  <div class="col-md-4">  \r\n  <div class="column-title" style="font-family: Muli-ExtraBold; text-transform: uppercase; font-size: 20px; padding-top: 15px; text-align: center;">Wide</div>\r\n  <hr style="width: 30px; height: 2px; background: #ffc425; display: block; /* margin: 1rem 0;">\r\n  <p style="font-size: 14px; text-align: center;">Product Range</p>\r\n  </div>\r\n  <div class="col-md-4">  \r\n  <div class="column-title" style="font-family: Muli-ExtraBold; text-transform: uppercase; font-size: 20px; padding-top: 15px; text-align: center;">Convenient</div>\r\n  <hr style="width: 30px; height: 2px; background: #ffc425; display: block; /* margin: 1rem 0;">\r\n  <p style="font-size: 14px; text-align: center;">Location Nationwide</p>\r\n  </div>\r\n  </div>\r\n  <div class="row align-items-center mt-5">\r\n  <div class="col-md-6 order-md-1 order-2" style="padding-bottom: 15px;">\r\n  <p style="font-family: Muli-ExtraBold; font-size: 25px; color: #ed1b23;">Our Vision</p>\r\n  <strong>To be the largest home improvement retailer in Malaysia and Brunei&nbsp;</strong></div>\r\n  <div class="col-md-6 order-md-2 order-1"><img src="https://www.mrdiy.com/files/editor_files/images/Home/English/Vision.jpg" caption="false" class="img-fluid" alt="MR.DIY Malaysia"></div>\r\n  </div>\r\n  <div class="row align-items-center mb-5">\r\n  <div class="col-md-6" style="margin-top: 30px;" cmcaret=""><img src="https://www.mrdiy.com/files/editor_files/images/Home/English/Vision2.png" caption="false" class="img-fluid" alt="MR.DIY Malaysia"></div>\r\n  <div class="col-md-6">\r\n  <p style="font-family: Muli-ExtraBold; font-size: 25px; color: #ed1a22;">Our Mission</p>\r\n  <span style="font-family: Muli-Bold; font-size: 16px; color: #000000;">To create a globally recognised retail brand. <br>To offer diverse retail experience catering for different customer segments.<br>To maintain wide variety, good quality and value for money; <br>holding through of our Company’s motto “ALWAYS LOW PRICES”.</span></div>\r\n  </div>\r\n  <div class="col-md-12 mt-5">\r\n  <p style="font-family: Muli-ExtraBold; font-size: 25px; text-align: center; color: #ed1b23;">Business Partners</p>\r\n  </div>\r\n  <div class="d-flex flex-wrap mb-5">\r\n  <div class="img text-center" style="flex: 1;"><img src="https://www.mrdiy.com/files/editor_files/logo01_2.png" caption="false"></div>\r\n  <div class="img text-center" style="flex: 1;"><img src="https://www.mrdiy.com/files/editor_files/logo03_2.png" caption="false"></div>\r\n  <div class="img text-center" style="flex: 1;"><img src="https://www.mrdiy.com/files/editor_files/logo04_2.png" caption="false"></div>\r\n  <div class="img text-center" style="flex: 1;"><img src="https://www.mrdiy.com/files/editor_files/logo05_2.png" caption="false"></div>\r\n  </div></div> </div>'),
+	(2, 'Contact Us', 'Contact-Us', '<div class="grid12-4 no-left-gutter"><div class="block-content"><h3 class="page-title"><span class="base" data-ui-id="page-title-wrapper">MR. D.I.Y. ECommerce [M] Sdn Bhd</span></h3><div class="feature indent first"><i class="ic fa fa-building"></i><p class="no-margin ">Lot 1907, Jalan KPB 11, Kawasan Perindustrian Balakong, 43300 Seri Kembangan, Selangor D.E, Malaysia.</p></div><div class="feature indent last"><i class="ic fa fa-envelope"></i><p class="no-margin " style="color: #f77b00;">ecom_helpdesk@mrdiy2u.com</p><p class="no-margin " style="color: #f77b00;"><span style="color: #000000;">(9.00 am – 6.00 pm, Monday – Friday)</span></p></div></div></div>'),
+	(3, 'Help Centre', 'Help-Centre', NULL),
+	(4, 'How To Buy', 'How-To-Buy', NULL),
+	(5, 'Shipping Info', 'Shipping-Info', NULL),
+	(6, 'Return & Refund', 'Return-Refund', NULL),
+	(7, 'Careers', 'Careers', NULL),
+	(8, 'Policies', 'Policies', NULL),
+	(9, 'Privacy Policy', 'Privacy-Policy', NULL),
+	(10, 'Branches', 'Branches', NULL);
+/*!40000 ALTER TABLE `page` ENABLE KEYS */;
+
+-- Dumping structure for table test.payment_method
+CREATE TABLE IF NOT EXISTS `payment_method` (
+  `value` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`value`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table test.payment_method: ~2 rows (approximately)
+/*!40000 ALTER TABLE `payment_method` DISABLE KEYS */;
+INSERT INTO `payment_method` (`value`, `name`) VALUES
+	(1, 'Cash On Delivery'),
+	(2, 'Transfer');
+/*!40000 ALTER TABLE `payment_method` ENABLE KEYS */;
 
 -- Dumping structure for table test.product
 CREATE TABLE IF NOT EXISTS `product` (
@@ -556,13 +698,28 @@ CREATE TABLE IF NOT EXISTS `state` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table test.state: ~2 rows (approximately)
+-- Dumping data for table test.state: ~3 rows (approximately)
 /*!40000 ALTER TABLE `state` DISABLE KEYS */;
 INSERT INTO `state` (`id`, `name`) VALUES
 	('2dde3156-9efe-11eb-a8b3-0242ac130003', 'Johor'),
 	('2dde33b8-9efe-11eb-a8b3-0242ac130003', 'Kuala Lumpur'),
 	('2dde34bc-9efe-11eb-a8b3-0242ac130003', 'Putrajaya');
 /*!40000 ALTER TABLE `state` ENABLE KEYS */;
+
+-- Dumping structure for table test.transfer_company
+CREATE TABLE IF NOT EXISTS `transfer_company` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table test.transfer_company: ~3 rows (approximately)
+/*!40000 ALTER TABLE `transfer_company` DISABLE KEYS */;
+INSERT INTO `transfer_company` (`id`, `name`) VALUES
+	(1, 'DHL'),
+	(2, 'Haram Transfer'),
+	(3, 'Al-fuad Transfer');
+/*!40000 ALTER TABLE `transfer_company` ENABLE KEYS */;
 
 -- Dumping structure for table test.user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -581,7 +738,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `email`, `firstName`, `lastName`, `mobileNumber`, `password`, `dateOfBirth`, `gender`) VALUES
 	('22fc8990-9e05-11eb-bd9d-00ff5ce25614', 'ammar.alziebak@gmail.com', 'ammar', 'alziebak', '1234567890', '$2b$10$SbMZ.rjVwaZXpzUfGN6pMuP/uV22/.7RcGtzHyuUsbs352tH0TgcK', NULL, 0),
-	('4b27aa50-996a-11eb-bd9d-00ff5ce25614', 'ammar.alziebak@hotmail.com', 'Ammar', 'Alziebak', '1234567892', '$2b$10$s3dB3dYkoTHIbQ9I1Wv09eipeYDbQcfHs2UIoKI617An9jlZE1wNq', '1987-04-12', 0),
+	('4b27aa50-996a-11eb-bd9d-00ff5ce25614', 'ammar.alziebak@hotmail.com', 'Ammar', 'Alziebak', '1234567892', '$2b$10$ITIVtMKlKTnQZIJRcHh7y.7pnRCXuPnMIXEvDEw7swiYWY2v9a68O', '1987-04-12', 0),
 	('c1e6b736-9454-11eb-a210-00ff5ce25614', 'test1@test1.com', NULL, NULL, NULL, '$2b$10$8lR9e8vjtFUVAVPncdF/qe.X9nfa9y9jRuGmpl.leRuNHQqCfNf3m', '2021-04-15', 0),
 	('c2e25deb-93ef-11eb-a210-00ff5ce25614', 'mysql@mysql.com', NULL, NULL, NULL, '$2b$10$f.DDBe0RAGlTnNL7rjPOYO1RzOYtfJByrgboldAk6sIQhIVDpIf7y', '2021-04-15', 0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
@@ -697,14 +854,16 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
   `userId` varchar(100) NOT NULL,
   `productId` varchar(100) NOT NULL,
   PRIMARY KEY (`wishlistId`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
--- Dumping data for table test.wishlist: ~0 rows (approximately)
+-- Dumping data for table test.wishlist: ~5 rows (approximately)
 /*!40000 ALTER TABLE `wishlist` DISABLE KEYS */;
 INSERT INTO `wishlist` (`wishlistId`, `userId`, `productId`) VALUES
-	(1, '4b27aa50-996a-11eb-bd9d-00ff5ce25614', '39aec240-9438-11eb-a210-00ff5ce25614'),
-	(12, '4b27aa50-996a-11eb-bd9d-00ff5ce25614', '3d6c2cc2-9435-11eb-a210-00ff5ce25614'),
-	(13, '4b27aa50-996a-11eb-bd9d-00ff5ce25614', '49aec240-9438-11eb-a210-00ff5ce25614');
+	(13, '4b27aa50-996a-11eb-bd9d-00ff5ce25614', '49aec240-9438-11eb-a210-00ff5ce25614'),
+	(22, '4b27aa50-996a-11eb-bd9d-00ff5ce25614', '3d6c2cc2-9435-11eb-a210-00ff5ce25614'),
+	(23, '4b27aa50-996a-11eb-bd9d-00ff5ce25614', '5d6c2cc2-9435-11eb-a210-00ff5ce25614'),
+	(24, '4b27aa50-996a-11eb-bd9d-00ff5ce25614', '69aec240-9438-11eb-a210-00ff5ce25614'),
+	(26, '4b27aa50-996a-11eb-bd9d-00ff5ce25614', '39aec240-9438-11eb-a210-00ff5ce25614');
 /*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
 
 -- Dumping structure for trigger test.before_insert_user
