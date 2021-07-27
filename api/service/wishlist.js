@@ -57,3 +57,18 @@ exports.wishlist_add_remove_wish_product = (data, callBack) => {
             }
         });
 }
+
+exports.wishlist_get_count = (data, callBack) => {
+
+    pool.query(`SELECT COUNT(*) count 
+                FROM wishlist
+                WHERE wishlist.userId = ?;`, [
+            data.userId
+        ],
+        (error, result, fields) => {
+            if (error) {
+                return callBack(error);
+            }
+            return callBack(null, result)
+        });
+}

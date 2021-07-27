@@ -45,3 +45,24 @@ exports.wishlist_add_remove_wish_product = (req, res) => {
         });
     });
 }
+
+exports.wishlist_get_count = (req, res, next) => {
+
+    Wishlist.wishlist_get_count(req.params, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).json({
+                success: 0,
+                message: "error when get wishlist count",
+                error: err
+            });
+        }
+
+        console.log(result);
+        res.status(200).json({
+            success: 1,
+            message: 'Get wishlist count Successfully',
+            itemCount: result[0].count
+        });
+    });
+}
