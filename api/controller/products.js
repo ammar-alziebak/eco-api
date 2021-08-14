@@ -24,6 +24,7 @@ exports.products_get_all = (req, res, next) => {
                     description: r.description,
                     price: r.price,
                     usdPrice: r.usdPrice,
+                    stock: r.stock,
                     discount: r.discount,
                     madeInId: r.madeInId,
                     madeInName: r.madeInName,
